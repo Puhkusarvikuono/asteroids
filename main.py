@@ -1,9 +1,10 @@
-import pygame
+import pygame, sys
 from pygame.time import Clock
 from asteroids import *
 from constants import *
 from player import *
 from asteroidfield import *
+from circleshape import *
 
 def main():
     pygame.init()
@@ -35,6 +36,9 @@ def main():
 #       player1.draw(screen)
         asteroid1.draw(screen)
         updatable.update(dt)
+        for asteroid in asteroids:
+            if asteroid.collision(player1) == True:
+                sys.exit("Game Over!")
         pygame.display.flip()
         clock.tick(60)
         dt = clock.get_time() / 1000
